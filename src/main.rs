@@ -1,5 +1,6 @@
-
+use bevy::prelude::*;
 
 fn main() {
-    p
+    App::build()
+        .run();
 }

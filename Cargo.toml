@@ -5,4 +5,4 @@ edition = "2018"
 authors = ["eric <skepz.dev@gmail.com>"]
 
 [dependencies]
-macroquad = "*"
+bevy = "*"
