@@ -1,31 +1,29 @@
-use bevy::prelude::*;
+mod game;
+pub mod assets;
+pub mod ball;
 
-const BALL_SPRITE: &str = "8-bit-ball.png";
+use std::{env, path};
+use ggez::{ContextBuilder, conf};
 
-fn setup(mut commands: Commands,
-         mut materials: ResMut<Assets<ColorMaterial>>,
-         asset_server: Res<AssetServer>) {
-    // camera
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-
-    // spawn a sprite
-    commands.spawn_bundle(SpriteBundle {
-        material: materials.add(asset_server.load(BALL_SPRITE).into()),
-        sprite: Sprite::new(Vec2::new(32., 32.)),
-        ..Default::default()
-    });
-}
+const RESOURCE_DIR: &str = "assets";
 
 fn main() {
-    App::build()
-        .insert_resource(ClearColor(Color::rgb(0., 1.0, 0.)))
-        .insert_resource(WindowDescriptor {
-            title: "Micro Golf".to_string(),
-            width: 500.0,
-            height: 400.0,
-            ..Default::default()
-        })
-        .add_plugins(DefaultPlugins)
-        .add_startup_system(setup.system())
-        .run();
+    // Add the CARGO_MANIFEST_DIR/assets to the resource paths
+    let resource_dir = if let Ok(manifest_dir) = env::var("CARGO_MANIFEST_DIR") {
+        let mut path = path::PathBuf::from(manifest_dir);
+        path.push(RESOURCE_DIR);
+        path
+    } else {
+        path::PathBuf::from(format!("./{}", RESOURCE_DIR).as_str())
+    };
+
+    // build the context
+    let cb = ContextBuilder::new("MicroGolf", "Sk3pz")
+        .window_setup(conf::WindowSetup::default().title("MicroGolf"))
+        .window_mode(conf::WindowMode::default().dimensions(600, 400))
+        .add_resource_path(resource_dir);
+
+    let (mut ctx, events_loop) = cb.build().expect("Failed to build game context");
+
+
 }
