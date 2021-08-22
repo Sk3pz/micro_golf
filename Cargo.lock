@@ -1316,6 +1316,8 @@ name = "micro_golf"
 version = "0.1.0"
 dependencies = [
  "ggez",
+ "glam",
+ "rand",
 ]
 
 [[package]]
