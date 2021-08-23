@@ -73,7 +73,7 @@ impl EventHandler<ggez::GameError> for MicroGolf {
             // handle ball movements
 
             // handle collisions and stuff
-            self.handle_collisions(ctx);
+            //self.handle_collisions(ctx);
 
             // process if ball is in the hole
         }
