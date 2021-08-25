@@ -35,6 +35,12 @@ impl MicroGolf {
         todo!()
     }
 
+    pub fn new_hole(&mut self) {
+        self.player.ball.pos = Vec2::new(self.window_width / 2. - 8., self.window_height - (self.window_height / 4.));
+        //self.player.current_hole += 1;
+        self.player.strokes = 0;
+    }
+
     pub fn handle_collisions(&mut self, ctx: &Context) {
         todo!()
     }
@@ -70,6 +76,8 @@ impl EventHandler<ggez::GameError> for MicroGolf {
         while timer::check_update_time(ctx, DESIRED_FPS) {
             let seconds = 1.0 / (DESIRED_FPS as f32);
 
+            self.new_hole();
+
             // handle ball movements
 
             // handle collisions and stuff
@@ -87,10 +95,10 @@ impl EventHandler<ggez::GameError> for MicroGolf {
         // TODO: draw obstacles and stuff here
 
         let strokes_dest = Vec2::new(10.0, 10.0);
-        let hole_dest = Vec2::new(10.0, 25.0);
+        let hole_dest = Vec2::new(10.0, 50.0);
 
         let strokes_str = format!("Strokes: {}", self.player.strokes);
-        let hole_str = format!("Strokes: {}", self.player.current_hole);
+        let hole_str = format!("Hole: {}", self.player.current_hole);
         let strokes_display = graphics::Text::new((strokes_str, self.assets.font, 32.0));
         let hole_display = graphics::Text::new((hole_str, self.assets.font, 32.0));
         graphics::draw(ctx, &strokes_display, (strokes_dest, 0.0, Color::WHITE));

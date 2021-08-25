@@ -14,8 +14,8 @@ const RESOURCE_DIR: &str = "assets";
 
 pub const DESIRED_FPS: u32   = 60;
 
-pub const WINDOW_WIDTH: f32  = 600.0;
-pub const WINDOW_HEIGHT: f32 = 400.0;
+pub const WINDOW_WIDTH: f32  = 1200.0;
+pub const WINDOW_HEIGHT: f32 = 1200.0;
 pub const FRICTION: f32      = 5.0;
 pub const MAX_POWER: f32     = 250.0;
 
@@ -50,7 +50,7 @@ fn main() -> GameResult {
     // build the context
     let cb = ContextBuilder::new("MicroGolf", "Sk3pz")
         .window_setup(conf::WindowSetup::default().title("MicroGolf"))
-        .window_mode(conf::WindowMode::default().dimensions(600., 400.))
+        .window_mode(conf::WindowMode::default().dimensions(WINDOW_WIDTH, WINDOW_HEIGHT))
         .add_resource_path(resource_dir);
 
     let (mut ctx, events_loop) = cb.build().expect("Failed to build game context");
