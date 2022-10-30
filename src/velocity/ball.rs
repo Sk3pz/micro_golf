@@ -40,6 +40,7 @@ impl Ball {
 
         // collision detection / bouncing
         // detect if it is colliding with a wall
+        // todo: not working :(
         let x_left = self.pos.x;
         let y_top = self.pos.y;
         let x_right = self.pos.x + center.x;

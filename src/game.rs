@@ -108,17 +108,11 @@ impl MicroGolf {
 
     // Calculates the angle between the ball and the cursor
     fn ball_angle(&self) -> f32 {
-        // todo: ball angle is 0 at multiple points
-        let mut delta_x = self.ball.pos.x - self.mouse_pos.x;
-        let mut delta_y = self.ball.pos.y - self.mouse_pos.y;
-        // if delta_x < 0. {
-        //     delta_x = delta_x * -1.;
-        // }
-        // if delta_y < 0. {
-        //     delta_y = delta_y * -1.;
-        // }
-        (delta_y.atan2(delta_x) * 180.0) / PI
-        // self.player.ball.pos.angle_between(self.mouse_pos)
+        let mut delta_x = self.mouse_pos.x - self.ball_center().x;
+        let mut delta_y = self.mouse_pos.y - self.ball_center().y;
+
+        delta_x.atan2(delta_y)
+        //delta_x.atan2(delta_y) * (180.0 / PI)
     }
 
     fn current_power(&self) -> f32 {

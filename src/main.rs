@@ -11,8 +11,8 @@ pub mod barrier;
 
 const RESOURCE_DIR: &str     = "assets";
 pub const DESIRED_FPS: u32   = 60;
-pub const WINDOW_WIDTH: f32  = 1200.0;
-pub const WINDOW_HEIGHT: f32 = 1200.0;
+pub const WINDOW_WIDTH: f32  = 600.0;
+pub const WINDOW_HEIGHT: f32 = 600.0;
 pub const FRICTION: f32      = 5.0;
 pub const MAX_POWER: f32     = 250.0;
 
